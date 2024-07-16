@@ -1,9 +1,81 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro'
+import Card from '../components/Card.astro'
+import { Icon } from 'astro-icon/components'
+import TechCard from '../components/tech-card.astro'
+
+const yier = new Date().getFullYear()
+
+const cardsLinkContent = [
+	{
+		title: 'ReactJS',
+		description: 'Front-end Library',
+		icon: 'react'
+	},
+	{
+		title: 'TypeScript',
+		description: 'Language',
+		icon: 'typescript'
+	},
+	{
+		title: 'JavaScript',
+		description: 'Language',
+		icon: 'javascript'
+	},
+	{
+		title: 'NextJS',
+		description: 'Front-end Framework',
+		icon: 'next'
+	},
+	{
+		title: 'AstroJS',
+		description: 'Front-end Framework',
+		icon: 'astro'
+	},
+	{
+		title: 'Figma',
+		description: 'Design Tool',
+		icon: 'figma'
+	},
+]
+
 ---
 
-<Layout title="Welcome to Astro.">
-	<main class="bg-zinc-50">
-		<h1>Hello World</h1>
-	</main>
+<Layout title="Welcome to Astro.">	
+	<div class="bg-zinc-950 max-w-screen-sm mx-auto pt-14 px-6 min-h-screen space-y-8">
+		<header class="flex flex-col items-center justify-center gap-4">
+			<img class="size-28 border border-lime-300 rounded-full block" src="../../myself.png" alt="Minha foto com fundo branco" />
+			<h1 class="text-zinc-100 font-semibold text-2xl">Matheus Reinheimer</h1>
+			<h2 class="text-zinc-400 text-lg">Frontend Development</h2>
+		</header>
+
+		<main class="w-full px-4 py-10 bg-zinc-900 space-y-6 rounded-3xl border border-zinc-800">
+			<div class="flex flex-col gap-4">
+				<Card title="See my portfolio" href="https://matheusreinheimer.vercel.app" target="_blank" />
+				<Card title="Download my resume" href="#" download />
+				<Card title="Contact me" href="https://wa.me/5551986470952" target="_blank" />
+			</div>
+
+			<div class="flex items-center justify-center gap-6">
+				<Icon name="linkedin" class="text-lime-300 size-6" />
+				<Icon name="github" class="text-lime-300 size-6" />
+				<Icon name="instagram" class="text-lime-300 size-6" />
+			</div>
+		</main>
+
+		<h1 class="text-zinc-50 text-2xl font-semibold">Skills</h1>
+
+		<section class="flex gap-3 flex-wrap">
+			{cardsLinkContent.map(({ title, description, icon }) => (
+				<TechCard title={title} description={description} icon={icon} />
+			))}
+		</section>
+
+		<footer class="border border-zinc-800 bg-zinc-900 text-center rounded-se-3xl rounded-ss-3xl">
+			<div class="pt-5 pb-2 flex flex-col gap-5">
+				<span class="font-semibold">👋 Thanks for your stopping by!</span>
+				<p class="text-zinc-400">© {yier} - All rights reserved</p>
+			</div>
+		</footer>
+	</div>
 </Layout>
